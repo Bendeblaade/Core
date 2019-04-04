@@ -1,0 +1,55 @@
+// Name: Benjamin Othmer, Matr.-Nr: 560625
+// Datum: 15.01.2018,	"Übungsaufgabe 6" 
+// Algorithmus "Bubblesort" für die Sortierung von Zahlenfolgen (Ganzzahlen).
+// Aufforderung Bediener zur Eingabe wvl. Zahlen er eingeben will.
+// Aufforderung Bediener zur Eingabe besagter Zahlen.
+// Verarbeitung der Zahlenfolge. 
+// Ausgabe der sortierten Zahlenfolge.
+// BONUS: Anzahl der Wiederholungen minimieren.
+
+#include "stdafx.h"
+#include <conio.h>
+#include <stdio.h>
+
+int main()
+{
+	int Zahl[100];
+	int i;
+	int n;
+	int Schritt;
+	int temp;
+
+	// Aufforderung Bediener zur Eingabe wvl. Zahlen er eingeben will.
+
+	printf("Geben Sie die Anzahl von Zahlen ein, welche Sortiert werden soll: ");
+	scanf_s("%d", &n);
+
+	// Aufforderung Bediener zur Eingabe besagter Zahlen.
+
+	for (i = 0; i<n; ++i)
+	{
+		printf("%d. Zahl Eingeben: ", i + 1);
+		scanf_s("%d", &Zahl[i]);
+	}
+
+	// Verarbeitung der Zahlenfolge.
+
+	for (Schritt = 0; Schritt<n - 1; ++Schritt)
+		for (i = 0; i<n - Schritt - 1; ++i)
+		{
+			if (Zahl[i]>Zahl[i + 1])
+			{
+				temp = Zahl[i];
+				Zahl[i] = Zahl[i + 1];
+				Zahl[i + 1] = temp;
+			}
+		}
+
+	// Ausgabe der sortierten Zahlenfolge.
+
+	printf("In Aufsteigender Reihenfolge: ");
+	for (i = 0; i<n; ++i)
+		printf("%d  ", Zahl[i]);
+	_getch();
+	return 0;
+}

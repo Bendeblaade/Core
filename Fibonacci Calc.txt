@@ -1,0 +1,53 @@
+// Fibunacci.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung.
+// Name: Benjamin Othmer, Matr.-Nr: 560625, 18.12.17	
+
+#include "stdafx.h"
+#include <conio.h>
+
+
+
+int main()
+{
+	// Deklaration
+	int n;
+	int Fibunacci;
+	int Fibuminus1;
+	int Fibuminus2;
+	int i;
+	int Eingabezahl;
+
+	printf("Bitte geben Sie den Rang der Fibunacci Folge ein der Berechnet werden soll: ");
+	scanf_s("%d", &n);
+
+	// iterative Lösung
+
+	if (n == 0) printf("Fibunacci = 0\n");
+	else
+	{
+		if (n == 1) printf("Fibunacci = 0 1\n");
+		else
+		{
+			Fibuminus1 = 1;
+			Fibuminus2 = 0;
+			printf("Fibunaccifolge:\n%d\n%d\n", Fibuminus2, Fibuminus1);
+			for (i=1;i<n;i++)
+			{
+				printf("Anzahl der Additionen = %d\n", i);
+				Fibunacci = Fibuminus1 + Fibuminus2;
+				printf("%d\n", Fibunacci);
+				Fibuminus2 = Fibuminus1;
+				Fibuminus1 = Fibunacci;
+			}
+		}
+	}
+
+
+
+		
+
+
+	_getch();
+
+    return 0;
+}
+

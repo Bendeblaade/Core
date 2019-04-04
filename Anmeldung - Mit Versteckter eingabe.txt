@@ -1,0 +1,47 @@
+#include "stdafx.h"
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int main() {
+	char eingegebenername[11];
+	char eingegebenespasswort[11], c;
+	char username[11] = "benjamin";
+	char passwort[11] = "passwort";
+	int index = 0;
+	printf("Username eingeben:\n");
+	scanf_s("%s", eingegebenername, _countof(eingegebenername));
+	printf("Passwort eingeben:\n");
+	while ((c = _getch()) != 11) {
+		if (index < 0)
+			index = 0;
+		if (c == 8) {
+			_putch('\b');
+			_putch(NULL);
+			_putch('\b');
+			index--;
+			continue;
+		}
+		eingegebenespasswort[index++] = c;
+		_putch('*');
+	}
+	eingegebenespasswort[index] = '\0';
+	if (strcmp(eingegebenername, username) == 0)
+	{
+		printf("\n\nStatus: Benutzername erkannt\n");
+		if ((strcmp(eingegebenespasswort, passwort) == 0))
+		{
+			printf("Status: Passwort erkannt\n\nLogin Erfolgreich!");
+		}
+		else {
+			printf("\nStatus: Zugriff Verweigert (Passwort Falsch)");
+		}
+	}
+	else {
+		printf("Status:Zugriff Verweigert\n");
+	}
+
+	_getch();
+	return 0;
+}

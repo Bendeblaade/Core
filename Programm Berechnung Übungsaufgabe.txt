@@ -1,0 +1,53 @@
+	// Aufgabe4.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung.
+	// Name: Benjamin Othmer, Matr.-Nr: 560625, Datum 18.12.17
+
+	#include "stdafx.h"
+	#include <conio.h>
+	#include <math.h>
+
+	int a, b;
+
+
+	void swap(void)
+	{
+		int c;
+		c = b;
+		b = a;
+		a = c;
+	}
+
+
+	int square(int Zahl)
+	{
+		return Zahl*Zahl;
+	}
+
+	int main()
+	{
+		do
+		{
+			printf("Geben Sie die Zahl 'a' ein: ");
+			scanf_s("%d", &a);
+			printf("\nGeben Sie die Zahl 'b' ein: ");
+			scanf_s("%d", &b);
+
+			if (a >	b)
+			{
+				swap();
+			}
+			else
+			{
+				a = square(a);
+				b = square(b);
+
+			}
+
+			printf("\nErgebnis 'a' = %d, Ergebnis 'b' = %d\n", a, b);
+
+		} while ((a + b) != 0);
+
+		_getch();
+
+		return 0;
+	}
+

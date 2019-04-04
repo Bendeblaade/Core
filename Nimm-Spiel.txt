@@ -1,0 +1,101 @@
+#include "stdafx.h"	
+#include <stdio.h>
+#include <conio.h>
+#include "stdlib.h"
+
+
+int computerZieht(int aktuelleAnzahlStreichhoelzer)
+{
+	int anzahlZuZiehenderStreichhoelzer;
+
+	switch (aktuelleAnzahlStreichhoelzer) {
+
+	case 13: case 7: printf("Alles klar. Der Computer beginnt.\n"); anzahlZuZiehenderStreichhoelzer = 2; break;
+
+	case 12: case 11: case 10: case 9: case 6: case 1: anzahlZuZiehenderStreichhoelzer = 1; break;
+
+	case 8: case 5: anzahlZuZiehenderStreichhoelzer = 3; break;
+
+	case 4: case 3: case 2: anzahlZuZiehenderStreichhoelzer = aktuelleAnzahlStreichhoelzer - 1; break;
+
+	}
+	printf("Der Computer zieht %d Streichhoelzer.\n", anzahlZuZiehenderStreichhoelzer);
+	return aktuelleAnzahlStreichhoelzer - anzahlZuZiehenderStreichhoelzer;
+}
+
+
+
+
+int menschZieht(int aktuelleAnzahlStreichhoelzer)
+{
+	int anzahlGezogenerStreichhölzer;
+	printf("Wie viele Streichhoelzer wollen Sie ziehen?\n");
+	scanf_s("%d", &anzahlGezogenerStreichhölzer);
+
+
+	return aktuelleAnzahlStreichhoelzer - anzahlGezogenerStreichhölzer;
+}
+
+
+int main(int argc, char* argv[])
+{
+	char spieler;
+	int anzahlVerbleibenderStreichhoelzer;
+
+	// Begrüßung, Anleitung
+	printf("Nimm\n\n");
+	printf("Es gibt 13 Streichhoelzer.\n"
+		"Der Spieler, der an der Reihe ist, darf ein, zwei oder drei\n"
+		"Streichhoelzer ziehen. Dann ist der andere Spieler an der Reihe.\n"
+		"Der Spieler, der das letzte Streichholz ziehen muss, hat verloren.\n\n");
+
+	// Start des Spiels, Auswahl des zuerst ziehenden Spielers, Initialisierungen
+	spieler = '?';
+	while (spieler != 'c' && spieler != 'm') // [c]omputer oder [m]ensch?
+	{
+		printf("Wer soll zuerst ziehen? Computer:[c] oder Mensch:[m] ");
+		scanf_s("%c", &spieler, 1);
+		fflush(stdin);
+	}
+	anzahlVerbleibenderStreichhoelzer = 13;
+
+	// Spielzüge:
+	while (anzahlVerbleibenderStreichhoelzer > 0)
+	{
+		switch (spieler)
+		{
+		case 'c':
+			anzahlVerbleibenderStreichhoelzer = computerZieht(anzahlVerbleibenderStreichhoelzer);
+			break;
+
+		case 'm':
+			anzahlVerbleibenderStreichhoelzer = menschZieht(anzahlVerbleibenderStreichhoelzer);
+			break;
+		}
+
+		printf("Es sind noch %d Streichhoelzer im Spiel.\n", anzahlVerbleibenderStreichhoelzer);
+
+		// Wechsel des Spielers:
+		if (spieler == 'c')
+		{
+			spieler = 'm';
+		}
+		else
+		{
+			spieler = 'c';
+		}
+	}
+
+	// Die Variable spieler enthält den Gewinner:
+	if (spieler == 'm')
+	{
+		printf("\nDer Mensch hat gewonnen!\n");
+	}
+	else
+	{
+		printf("\nDer Computer hat gewonnen!\n");
+	}
+
+	_getch();
+	return 0;
+}

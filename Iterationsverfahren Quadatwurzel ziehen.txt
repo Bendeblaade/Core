@@ -1,0 +1,40 @@
+// Wurzelziehen.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung.
+// Name: Benjamin Othmer, Matr.-Nr: 560625
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <conio.h>
+
+int main()
+{
+
+	float X, Xalt, Xneu, Epsilon;
+
+// Eingabe
+
+	printf("Bitte geben Sie den Wert 'X' ein aus welchem die Quadratwurzel gezogen werden soll: ");
+	scanf_s("%f", &X);
+	printf("Bitte geben Sie den Wert 'Epsilon' ein um die Fehlergrenze zu bestimmen: ");
+	scanf_s("%f", &Epsilon);
+// Berechnung
+
+	Xneu = X;
+	do
+	{
+		Xalt = Xneu;
+			Xneu = (Xalt + (X / Xalt)) / 2;
+			printf("Xneu = %f \n", Xneu);
+	} while ((Xalt - Xneu) > Epsilon);
+	
+
+// Ausgabe
+
+	printf("Ergebnis = %f\n", Xneu);
+
+
+_getch();
+
+
+    return 0;
+}
+

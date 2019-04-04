@@ -1,0 +1,54 @@
+#include "stdafx.h"
+#include "conio.h"
+#include "math.h"
+
+double berechneNullstelle(double linkerWert, double rechterWert, double epsilon)
+{
+	double fx, fz, mittelwert, xi;
+
+	mittelwert = epsilon * 2;
+
+	while (fabs(mittelwert) > epsilon) {
+
+
+		// Formel für alle Zahlen > 0
+
+		mittelwert = (rechterWert - linkerWert) / 2.0;
+
+		xi = linkerWert + mittelwert;
+
+		fx = pow(linkerWert, 3.0) + (((93) * pow(linkerWert, 3.0) / 20) - ((931 * linkerWert) / 100) - (1617 / 50));
+		fz = pow(xi, 3.0) + ((93 * pow(xi, 3.0) / 20) - ((931 * xi) / 100) - (1617 / 50));
+
+		if (fx < 0 && fz > 0 || fx > 0 && fz < 0) {
+			rechterWert = xi;
+		}
+		else {
+			linkerWert = xi;
+		}
+	}
+	return xi;
+
+}
+
+int main()
+{
+	double a, b, x1, fx, epsilon;
+
+	epsilon = 0.0002;
+
+	printf("a?\n");
+	scanf_s("%lf", &a);
+
+	printf("b?\n");
+	scanf_s("%lf", &b);
+
+	printf("Der Wert Epsilon liegt auf Stelle: %lf\n", epsilon);
+
+	x1 = berechneNullstelle(a, b, epsilon);
+
+	printf("Die Nullstelle = %lf", x1);
+
+	_getch();
+	return 0;
+}
